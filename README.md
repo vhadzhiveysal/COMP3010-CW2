@@ -20,7 +20,28 @@ A screenshot of the Splunk Data Summary page and validation searches are provide
 in the evidence folder.
 
 ## Guided Questions – AWS & Endpoint Analysis
-(To be completed)
+### Question 1 – IAM Users Accessing AWS Services
+
+To identify IAM users accessing AWS services within Frothly’s AWS environment,
+CloudTrail logs were analysed using the `aws:cloudtrail` sourcetype. AWS
+CloudTrail records all API activity, including both successful and unsuccessful
+service access attempts.
+
+The following SPL query was used to extract unique IAM usernames:
+
+```
+index=botsv3 sourcetype=aws:cloudtrail
+| stats count by userIdentity.userName
+| sort userIdentity.userName
+```
+
+The analysis identified four IAM users that accessed AWS services during the incident timeframe:
+- bstoll
+- btun
+- splunk_access
+- web_admin
+This information is crucial for SOC investigations, because it establishes which identities were active in the AWS environment,
+and helps to narrow the scope of potential misconfigurations, compromised credentials, or malicious activity.
 
 ## Conclusion
 (To be completed)
