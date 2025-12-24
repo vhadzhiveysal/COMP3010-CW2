@@ -43,6 +43,24 @@ The analysis identified four IAM users that accessed AWS services during the inc
 This information is crucial for SOC investigations, because it establishes which identities were active in the AWS environment,
 and helps to narrow the scope of potential misconfigurations, compromised credentials, or malicious activity.
 
+### Question 2 – Detecting AWS API Activity Without MFA
+
+AWS CloudTrail logs provide indicators of whether MFA was used during API requests. To identify AWS API activity occurring without MFA,
+CloudTrail events were analysed while excluding console login events.
+
+The following SPL query was used:
+
+```
+index=botsv3 sourcetype=aws:cloudtrail
+| search NOT eventName=ConsoleLogin *mfa*
+```
+
+Upon searching through the 'interesting fields' I found a field by the name of `userIdentity.sessionContext.attributes.mfaAuthenticated`, which
+indicates whether MFA was used during an API request. Values of false represent API activity executed without MFA, which is an important 
+security concern and a common SOC alerting condition.
+
+I added `| stats count by userIdentity.sessionContext.attributes.mfaAuthenticated` to the main query and found that there were 2155 counts of no MFA authentication, and 0 counts of it having MFA authentication.
+
 ## Conclusion
 (To be completed)
 
