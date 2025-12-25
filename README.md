@@ -81,6 +81,31 @@ Certain exploits and performance-based attacks may target specific CPU
 architectures, making accurate hardware visibility an important component of
 endpoint security monitoring.
 
+### Questions 4–6 – Publicly Accessible S3 Bucket Misconfiguration
+
+A review of AWS CloudTrail logs identified a misconfiguration event where an S3
+bucket was made publicly accessible. Such misconfigurations are a common cloud
+security risk and can result in unintended data exposure.
+
+The following SPL query was used to identify S3 permission changes:
+`index=botsv3 sourcetype=aws:cloudtrail eventName=PutBucketAcl`
+
+Analysis of the event revealed that the API call enabling public access (the earliest event in the list) had the
+following attributes:
+
+Event ID: ab45689d-69cd-41e7-8705-5350402cf7ac
+IAM Username (Bud's username): bstoll 
+S3 Bucket Name: frothlywebcode
+
+The event ID was one of the first attributes listed in the event.
+The username attribute was found easier through opening the `userIdentity.userName` field.
+The S3 bucket name attribute was found easier through opening the `requestParameters.bucketName` field.
+
+This activity demonstrates how improper access control list (ACL) configuration
+can introduce security risks within cloud environments. From a SOC perspective,
+monitoring PutBucketAcl events is critical for early detection of accidental or
+malicious exposure of cloud storage resources.
+
 ## Conclusion
 (To be completed)
 
