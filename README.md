@@ -61,6 +61,26 @@ security concern and a common SOC alerting condition.
 
 I added `| stats count by userIdentity.sessionContext.attributes.mfaAuthenticated` to the main query and found that there were 2155 counts of no MFA authentication, and 0 counts of it having MFA authentication.
 
+### Question 3 – Processor Information on Web Servers
+
+To identify the processor used on Frothly’s web servers, host-level hardware
+telemetry was analysed using the `hardware` sourcetype. This data source
+contains detailed system information including CPU models, memory, storage,
+and network interface details.
+
+The following SPL query was used to list processor information across
+hosts:
+`index=botsv3 sourcetype=hardware`
+
+The analysis revealed that the web servers consistently use the following
+processor model: E5-2676
+
+Understanding processor architecture is relevant to SOC operations, as it
+supports asset profiling, capacity planning, and vulnerability assessment.
+Certain exploits and performance-based attacks may target specific CPU
+architectures, making accurate hardware visibility an important component of
+endpoint security monitoring.
+
 ## Conclusion
 (To be completed)
 
