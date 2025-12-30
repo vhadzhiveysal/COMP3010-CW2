@@ -3,10 +3,73 @@
 # BOTSv3 Incident Analysis
 
 ## Introduction
-(To be completed)
+Security Operations Centres (SOCs) play a critical role in detecting, analysing,
+and responding to cyber security incidents across modern enterprise
+environments. These environments increasingly rely on a combination of cloud
+infrastructure, endpoint systems, and network services, all of which generate
+large volumes of security-relevant telemetry.
+
+This report documents an individual security investigation conducted using the
+Boss of the SOC version 3 (BOTSv3) dataset, a realistic Capture The Flag (CTF)
+exercise developed by Splunk. BOTSv3 simulates a multi-stage security incident
+within a fictional brewing company named Frothly, providing diverse log sources
+including AWS CloudTrail logs, S3 access logs, endpoint telemetry, and system
+hardware data.
+
+The primary objective of this investigation was to analyse AWS-related activity
+and endpoint behaviour using Splunk’s Search Processing Language (SPL), following
+a SOC-style investigative workflow. The scope of the analysis focused on IAM
+activity, multi-factor authentication usage, cloud storage misconfigurations,
+object uploads to public S3 buckets, and endpoint operating system anomalies.
+
+It is assumed that all log data provided within the BOTSv3 dataset is complete
+and accurately represents Frothly’s simulated environment during the incident
+timeframe. No additional log sources were introduced beyond those available
+in the dataset.
+
+The report is structured to reflect professional SOC documentation practices.
+It begins with a reflection on SOC roles and incident handling, followed by
+documentation of the Splunk installation and data preparation process. The core
+of the report presents guided question analysis supported by SPL queries and
+evidence, before concluding with key findings and recommendations for improving
+detection and response capabilities.
 
 ## SOC Roles & Incident Handling Reflection
-(To be completed)
+Security Operations Centres typically operate using a tiered model, where
+analysts are assigned responsibilities based on the complexity and severity of
+security events. Tier 1 analysts focus on initial alert triage and monitoring,
+Tier 2 analysts perform deeper investigation and correlation, while Tier 3
+analysts handle advanced threat hunting, incident response coordination, and
+long-term remediation.
+
+Within the BOTSv3 exercise, many of the tasks performed align closely with the
+responsibilities of a Tier 2 SOC analyst. The investigation required analysing
+multiple log sources, correlating events across cloud and endpoint telemetry,
+and identifying security-relevant misconfigurations rather than responding to
+pre-defined alerts alone.
+
+The identification of IAM users accessing AWS services and the analysis of API
+activity without multi-factor authentication reflect the detection and analysis
+phases of incident handling. These activities support early identification of
+credential misuse or policy violations and would typically be triggered by
+automated alerts within a production SOC environment.
+
+The discovery of a publicly accessible S3 bucket and subsequent identification
+of an uploaded file demonstrates the escalation from detection to response.
+From a SOC perspective, this would likely involve incident containment actions
+such as revoking public access, reviewing access logs for further abuse, and
+notifying cloud infrastructure or data protection teams.
+
+Endpoint analysis using `winhostmon` highlights the importance of asset
+visibility and configuration management during incident response. Identifying
+endpoints running non-standard operating system editions enables SOC teams to
+prioritise monitoring, patching, or isolation of potentially vulnerable systems.
+
+Finally, the BOTSv3 exercise reinforces the importance of recovery and
+post-incident improvement. Lessons learned from cloud misconfigurations and
+inconsistent endpoint configurations can inform improved detection rules,
+policy enforcement, and preventative controls such as mandatory MFA
+requirements and automated cloud security posture management.
 
 ## Installation & Data Preparation
 ### BOTSv3 Dataset Ingestion and Validation
