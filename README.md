@@ -118,6 +118,26 @@ being searched for.
 `index=botsv3 sourcetype="aws:s3:accesslogs" *.txt*`
 Three events showed up each detailing a `OPEN_BUCKET_PLEASE_FIX.txt` file.
 
+### Question 8 – Endpoint with a Different Windows OS Edition
+
+Windows endpoint telemetry was analysed using the `winhostmon` sourcetype to
+identify inconsistencies in operating system editions across Frothly’s
+environment. An initial comparison showed that one endpoint was running a
+different Windows edition compared to the rest of the hosts.
+
+The following SPL query was used to identify the outlier system:
+
+`index=botsv3 sourcetype=winhostmon | stats count by host OS`
+
+This analysis identified the host BSTOLL-L as the endpoint running a
+different Windows OS edition. The fully qualified domain name (FQDN) was
+confirmed through correlation with other data sources within the dataset,
+resulting in the following endpoint identification: `BSTOLL-L.froth.ly`
+
+From a SOC perspective, identifying endpoints with non-standard operating system
+configurations is important, as such systems may represent legacy assets,
+misconfigurations, or increased attack surface requiring closer monitoring.
+
 ## Conclusion
 (To be completed)
 
