@@ -106,6 +106,18 @@ can introduce security risks within cloud environments. From a SOC perspective,
 monitoring PutBucketAcl events is critical for early detection of accidental or
 malicious exposure of cloud storage resources.
 
+### Question 7 – File Uploaded to the Public S3 Bucket
+
+S3 access logs were analysed to determine whether any objects were uploaded 
+while the bucket was exposed. The `aws:s3:accesslogs` sourcetype records detailed
+object-level operations, including uploads and HTTP response codes.
+
+An initial keyword-based search for text files ultimately revealed the text file
+being searched for.
+
+`index=botsv3 sourcetype="aws:s3:accesslogs" *.txt*`
+Three events showed up each detailing a `OPEN_BUCKET_PLEASE_FIX.txt` file.
+
 ## Conclusion
 (To be completed)
 
