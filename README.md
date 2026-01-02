@@ -299,5 +299,27 @@ https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for
 Documentation. Available:
 https://docs.splunk.com/Documentation/Splunk/latest/SearchReference
 
+## Generative AI Declaration
+This coursework made use of a generative AI tool (ChatGPT) as a support aid
+during the preparation of the written report and documentation. The tool was
+used to assist with structuring sections, improving clarity of written
+explanations, refining academic tone, and expanding reflections on Security
+Operations Centre (SOC) practices.
+
+All technical work, including Splunk installation, BOTSv3 dataset ingestion,
+Search Processing Language (SPL) query development, log analysis, identification
+of findings, and interpretation of results, was performed independently.
+The answers to the guided questions, investigative decisions, and
+evidence collection are based on my own analysis of the BOTSv3 dataset.
+
+The generative AI tool did not generate SPL queries used in the final
+investigation results, nor did it determine answers to the guided questions.
+Its use was limited to supporting written communication and presentation of
+existing work, in line with the module guidance that permits and encourages
+transparent use of generative AI tools.
+
+This declaration is provided to ensure full transparency and academic integrity
+in accordance with university policy.
+
 ## Video Presentation
 (To be added)
