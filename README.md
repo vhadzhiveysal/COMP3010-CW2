@@ -143,6 +143,7 @@ The analysis identified four IAM users that accessed AWS services during the inc
 - btun
 - splunk_access
 - web_admin
+
 This information is crucial for SOC investigations, because it establishes which identities were active in the AWS environment,
 and helps to narrow the scope of potential misconfigurations, compromised credentials, or malicious activity.
 
