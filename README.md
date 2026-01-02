@@ -72,15 +72,55 @@ policy enforcement, and preventative controls such as mandatory MFA
 requirements and automated cloud security posture management.
 
 ## Installation & Data Preparation
-### BOTSv3 Dataset Ingestion and Validation
+
+To conduct the BOTSv3 investigation, a dedicated Security Information and Event
+Management (SIEM) environment was required to replicate realistic SOC
+conditions. Splunk Enterprise was selected due to its widespread adoption in
+industry SOCs and its native compatibility with the BOTSv3 dataset. The
+installation was performed on an Ubuntu-based virtual machine, providing a
+stable and reproducible environment commonly used in enterprise and cloud
+security operations.
+
+An Ubuntu virtual machine was chosen to reflect real-world SOC infrastructure,
+where Linux-based servers are frequently deployed for log aggregation, analysis,
+and security tooling. This approach also ensured full compatibility with Splunk
+Enterprise installation requirements and allowed fine-grained control over
+resource allocation, networking, and storage. Using a virtualised environment
+supports isolation, repeatability, and scalability, which are critical
+considerations in SOC deployments.
+
+Splunk Enterprise was installed following official Splunk documentation,
+including configuration of management and web interfaces, indexing settings,
+and initial administrative access. Once installed, the BOTSv3 dataset was
+retrieved from the official Splunk GitHub repository and ingested according to
+the provided configuration instructions. Data inputs were configured to
+preserve original source types and timestamps, ensuring accurate event
+correlation across different log sources.
 
 The BOTSv3 dataset was successfully installed into Splunk Enterprise following the
 official Splunk BOTSv3 repository instructions. The dataset
 contained 2,083,056 events across multiple source types, confirming
 successful indexing.
 
-A screenshot of the Splunk Data Summary page and validation searches are provided
-in the evidence folder.
+The dataset ingestion process included multiple security-relevant source types,
+such as AWS CloudTrail logs, S3 access logs, endpoint telemetry, and system
+monitoring data. Preserving correct source type classification was essential,
+as SOC analysts rely on consistent data parsing to perform efficient searches,
+correlation, and alerting. This reflects real SOC environments, where improper
+data onboarding can significantly reduce detection capability.
+
+Following ingestion, data validation was performed to confirm successful and
+complete dataset loading. This included verifying total event volume, which
+exceeded two million events, and reviewing available source types to ensure
+coverage across cloud, endpoint, and infrastructure domains. Additional checks
+included time-range validation and spot-checking events from critical source
+types such as aws:cloudtrail and winhostmon.
+
+Overall, the installation and data preparation process established a realistic
+SOC-style monitoring environment capable of supporting complex incident
+analysis. By following structured ingestion and validation practices, the
+environment ensured reliable analysis outcomes and mirrored the operational
+standards expected within professional security operations centres.
 
 ## Guided Questions – AWS & Endpoint Analysis
 ### Question 1 – IAM Users Accessing AWS Services
