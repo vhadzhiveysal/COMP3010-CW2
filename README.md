@@ -202,10 +202,59 @@ configurations is important, as such systems may represent legacy assets,
 misconfigurations, or increased attack surface requiring closer monitoring.
 
 ## Conclusion
-(To be completed)
+This investigation used the Boss of the SOC v3 (BOTSv3) dataset to simulate a
+realistic security incident within a cloud-enabled enterprise environment. By
+analysing AWS, endpoint, and infrastructure logs using Splunk, the exercise
+demonstrated how Security Operations Centres detect, investigate, and respond
+to security incidents across multiple data sources.
+
+The guided analysis highlighted several common security risks faced by modern
+organisations, including excessive IAM access visibility, the absence of
+multi-factor authentication for API activity, and misconfigured cloud storage
+resources. The identification of a publicly accessible S3 bucket and the
+subsequent discovery of a sensitive file upload illustrates how minor
+configuration errors can lead to significant security exposure.
+
+Endpoint telemetry analysis further reinforced the importance of asset
+inventory and configuration management within SOC operations. Identifying a
+host running a different Windows operating system edition demonstrates how
+deviations from standard configurations can increase attack surface and
+require prioritised monitoring.
+
+From a SOC operations perspective, the BOTSv3 exercise closely mirrors the
+responsibilities of Tier 2 analysts, requiring event correlation, investigative
+reasoning, and evidence-based conclusions rather than reliance on automated
+alerts alone. The exercise emphasises the importance of contextual analysis and
+the ability to interpret log data accurately during incident response.
+
+Overall, this investigation demonstrates how effective log aggregation,
+structured analysis, and cloud visibility are critical to modern SOC success.
+The lessons learned support the adoption of stronger preventative controls,
+including enforced MFA policies, automated detection of cloud
+misconfigurations, and improved endpoint standardisation to reduce future risk.
 
 ## References
-(To be completed)
+[1] Splunk, “Boss of the SOC v3 Dataset,” GitHub Repository. Available:
+https://github.com/splunk/botsv3
+
+[2] Amazon Web Services, “AWS CloudTrail User Guide,” AWS Documentation.
+Available: https://docs.aws.amazon.com/awscloudtrail/
+
+[3] Amazon Web Services, “Amazon S3 API Reference – PutBucketAcl,” AWS
+Documentation. Available:
+https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html
+
+[4] Amazon Web Services, “Amazon S3 API Reference – PutObject,” AWS
+Documentation. Available:
+https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
+
+[5] Amazon Web Services, “Monitoring AWS CloudTrail with CloudWatch Logs,” AWS
+Documentation. Available:
+https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html
+
+[6] Splunk, “Splunk Search Processing Language (SPL) Reference,” Splunk
+Documentation. Available:
+https://docs.splunk.com/Documentation/Splunk/latest/SearchReference
 
 ## Video Presentation
 (To be added)
