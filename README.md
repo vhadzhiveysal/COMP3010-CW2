@@ -198,7 +198,9 @@ Analysis of the event revealed that the API call enabling public access (the ear
 following attributes:
 
 Event ID: ab45689d-69cd-41e7-8705-5350402cf7ac
-IAM Username (Bud's username): bstoll 
+
+IAM Username (Bud's username): bstoll
+
 S3 Bucket Name: frothlywebcode
 
 The event ID was one of the first attributes listed in the event.
